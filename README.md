@@ -1,6 +1,6 @@
 # 程序员八荣八耻 · Code Honor Skill
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![AgentSkill](https://img.shields.io/badge/AgentSkill-Standard-green)](SKILL.md) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code) [![OpenCode](https://img.shields.io/badge/OpenCode-Skill-blue)](https://github.com/opencode-ai/opencode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![AgentSkill](https://img.shields.io/badge/AgentSkill-Standard-green)](SKILL.md)
 
 > **写好代码，从尊重开始。做有原则的技术人。**
 
@@ -8,7 +8,7 @@
 
 不是道德说教，是每一行代码落笔前的 **检查清单** 和 **决策过滤器**。
 
-![程序员八荣八耻](assets/WechatIMG147083.jpg)
+![程序员八荣八耻](assets/code-honor.jpg)
 
 ---
 
@@ -29,34 +29,42 @@
 
 ## 安装
 
-### Claude Code
+### 使用 npx skills 安装（推荐）
 
 ```bash
-# 项目级别安装（在 git 仓库根目录执行）
-mkdir -p .claude/skills
-git clone https://github.com/your-org/code-honor-skill .claude/skills/code-honor
+# 项目级别安装
+npx skills add xxxily/code-honor-skill@code-honor
 
 # 全局安装（所有项目可用）
-git clone https://github.com/your-org/code-honor-skill ~/.claude/skills/code-honor
+npx skills add xxxily/code-honor-skill@code-honor -g
 ```
 
-### OpenCode
+### 使用 npx skills init 创建
 
 ```bash
-git clone https://github.com/your-org/code-honor-skill ~/.opencode/workspace/skills/code-honor
+# 基于此模板创建自定义 skill
+npx skills init code-honor
+```
+
+### 手动安装
+
+```bash
+# Claude Code - 全局安装
+cp -r skills/code-honor ~/.claude/skills/code-honor
+
+# Claude Code - 项目级别安装
+mkdir -p .claude/skills
+cp -r skills/code-honor .claude/skills/code-honor
+
+# OpenCode - 全局安装
+cp -r skills/code-honor ~/.opencode/workspace/skills/code-honor
 ```
 
 ---
 
 ## 使用
 
-在 Claude Code / OpenCode 中输入：
-
-```
-/code-honor
-```
-
-或直接触发——当你描述任何编码任务时，Skill 自动激活。
+在 AI 编码工具中输入 `code-honor` 或直接描述编码任务，Skill 自动激活。
 
 ### 使用场景
 
@@ -64,7 +72,7 @@ git clone https://github.com/your-org/code-honor-skill ~/.opencode/workspace/ski
 |------|---------|------|
 | **日常编码** | 描述写代码需求 | AI 自动按八荣耻执行 |
 | **Code Review** | 说「review 这段代码」 | 逐条对照八荣耻审查 |
-| **代码扫描** | 运行分析工具 | 批量发现潜在违反行为 |
+| **代码扫描** | 运行扫描工具 | 批量发现潜在违反行为 |
 | **新人培训** | 展示八荣耻原文图 | 团队编码规范对齐 |
 
 ---
@@ -101,30 +109,12 @@ AI Agent 在执行任何编码操作前，自动通过 **8 道检查**：
 | 删除失败测试 | 原则 5 - 跳过验证 |
 | 大规模重构混功能修改 | 原则 8 - 盲目修改 |
 
-### Code Review 检查清单
-
-内置完整的 Code Review checklist，逐条对照八荣耻，任何项标记为 ❌ 必须给出具体修改建议。
-
 ### 代码扫描工具
 
-提供 `code_conduct_analyzer.py` 工具，批量扫描代码库中的潜在违反行为：
+内置脚本，批量扫描代码库中的潜在违反行为：
 
 ```bash
-python3 tools/code_conduct_analyzer.py ./src
-
-# 输出示例：
-# ============================================================
-#   程序员八荣八耻 — 代码规范扫描报告
-#   共发现 23 处潜在问题
-# ============================================================
-#
-# ## todo_hacks
-#   🟡 L42: 模糊执行
-#      // TODO: should probably check the API
-#
-# ## ts_ignore
-#   🔴 L15: 假装理解
-#      const data = response as any;
+python3 skills/code-honor/scripts/code_conduct_analyzer.py ./src
 ```
 
 ---
@@ -133,28 +123,21 @@ python3 tools/code_conduct_analyzer.py ./src
 
 ```
 code-honor-skill/
-├── SKILL.md                  # Skill 入口，含完整 Agentic Protocol
-├── assets/
-│   └── WechatIMG147083.jpg   # 八荣八耻原版图片
-├── prompts/
-│   ├── intake.md             # 激活与信息录入模板
-│   └── review.md             # Code Review Prompt
-└── tools/
-    └── code_conduct_analyzer.py  # 批量代码扫描工具
+├── README.md
+├── LICENSE
+├── .skills.json
+├── skills/
+│   └── code-honor/
+│       ├── SKILL.md                    # Skill 入口，含完整 Agentic Protocol
+│       ├── assets/
+│       │   └── code-honor.jpg          # 八荣八耻图片
+│       ├── prompts/
+│       │   ├── intake.md               # 激活与信息录入模板
+│       │   └── review.md              # Code Review Prompt
+│       └── scripts/
+│           └── code_conduct_analyzer.py # 批量代码扫描工具
+└── test-prompts.json
 ```
-
----
-
-## 蒸馏方法论
-
-本 Skill 通过 [女娲 · Skill造人术](https://github.com/alchaincyf/nuwa-skill) 蒸馏完成，
-并经 [Darwin Skill](https://github.com/alchaincyf/darwin-skill) 进化验证。
-
-蒸馏过程将原始的八条原则提炼为：
-- **4 个心智模型**：信息先核实、不确定就对齐、你不是用户、代码没有新的
-- **8 条决策启发式**：每条原则对应一个可操作的判断规则
-- **6 种反模式**：明确标注绝不做的事情
-- **Code Review 检查清单**：可直接用于审查流程
 
 ---
 

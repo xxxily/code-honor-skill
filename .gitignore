@@ -1,7 +1,15 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
-.eggs/
 *.egg-info/
+
+# Build artifacts
 dist/
 build/
+
+# Skills lock
+.skills-lock.json
+
+# OS
+.DS_Store
