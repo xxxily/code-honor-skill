@@ -1,0 +1,3 @@
+timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-04-21T00:00	d03771a	code-honor	-	72	baseline	整体	初始评估	full_test
+2026-04-21T00:05	-	code-honor	72	89	keep	资源整合度+边界条件+检查点	新增资源索引、异常处理Fallback、5个关键检查点	full_test
