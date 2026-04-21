@@ -8,7 +8,7 @@
 
 不是道德说教，是每一行代码落笔前的 **检查清单** 和 **决策过滤器**。
 
-![程序员八荣八耻](assets/code-honor.jpg)
+![程序员八荣八耻](assets/code-honor.png)
 
 ---
 
@@ -130,7 +130,7 @@ code-honor-skill/
 │   └── code-honor/
 │       ├── SKILL.md                    # Skill 入口，含完整 Agentic Protocol
 │       ├── assets/
-│       │   └── code-honor.jpg          # 八荣八耻图片
+│       │   └── code-honor.png          # 八荣八耻图片
 │       ├── prompts/
 │       │   ├── intake.md               # 激活与信息录入模板
 │       │   └── review.md              # Code Review Prompt
